@@ -8,11 +8,11 @@ import path from "path";
 
 const commonDateOptions = {
   "since": {
-    type: "string",
+    type: "string" as const,
     description: "Start date for the report (YYYY-MM-DD)",
   },
   "until": {
-    type: "string",
+    type: "string" as const,
     description: "End date for the report (YYYY-MM-DD)",
   },
   
@@ -20,17 +20,17 @@ const commonDateOptions = {
 
 const commonReportOptions = {
   "json": {
-    type: "boolean",
+    type: "boolean" as const,
     description: "Output report in JSON format",
     default: false,
   },
   "show-models": {
-    type: "boolean",
+    type: "boolean" as const,
     description: "Show detailed model breakdown in reports",
     default: true,
   },
   "xml": {
-    type: "boolean",
+    type: "boolean" as const,
     description: "Output report in XML format (overrides --json)",
     default: false,
   },
@@ -38,7 +38,7 @@ const commonReportOptions = {
 
 const commonOptions = {
   "data-dir": {
-    type: "string",
+    type: "string" as const,
     description: "Specify the data directory for opencode usage files",
     default: path.join(os.homedir(), ".local", "share", "opencode", "project"), // Default based on data.ts analysis
   },
