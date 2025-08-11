@@ -145,8 +145,33 @@ function generateXmlOutput(data: any, rootElement: string): string {
 
 export async function sessionReport(since?: string, until?: string, jsonOutput: boolean = false, showModels: boolean = true, xmlOutput: boolean = false, dataDir?: string) {
 
-  const sessionFiles = await listSessionInfoFiles(dataDir);
+  let sessionFiles;
+  try {
+    sessionFiles = await listSessionInfoFiles(dataDir);
+  } catch (error: any) {
+    if (jsonOutput) {
+      console.log('[]');
+    } else {
+      console.error(`Error: ${error.message}`);
+      console.error('\nTo use ocusage, you need opencode installed and some usage data generated.');
+      console.error('Visit: https://github.com/sst/opencode for installation instructions.');
+    }
+    return;
+  }
+
   if (sessionFiles.length === 0) {
+    const message = 'No opencode session data found.';
+    if (jsonOutput) {
+      console.log('[]');
+    } else if (xmlOutput) {
+      console.log('<?xml version="1.0" encoding="UTF-8"?>\n<sessions>\n  <message>No sessions found</message>\n</sessions>');
+    } else {
+      console.log(message);
+      console.log('\nTo generate session data:');
+      console.log('1. Install opencode: https://github.com/sst/opencode');
+      console.log('2. Use opencode to generate some coding sessions');
+      console.log('3. Run ocusage session to see your session statistics');
+    }
     return;
   }
 
@@ -291,8 +316,33 @@ export async function minuteReport(since?: string, until?: string, jsonOutput: b
 async function generateReport(format: "day" | "month" | "week" | "hour" | "minute", since?: string, until?: string, jsonOutput: boolean = false, showModels: boolean = true, xmlOutput: boolean = false, dataDir?: string) {
   console.log(`Generating ${format === "day" ? "daily" : format + "ly"} report...`);
 
-  const sessionFiles = await listSessionInfoFiles(dataDir);
+  let sessionFiles;
+  try {
+    sessionFiles = await listSessionInfoFiles(dataDir);
+  } catch (error: any) {
+    if (jsonOutput) {
+      console.log('[]');
+    } else {
+      console.error(`Error: ${error.message}`);
+      console.error('\nTo use ocusage, you need opencode installed and some usage data generated.');
+      console.error('Visit: https://github.com/sst/opencode for installation instructions.');
+    }
+    return;
+  }
+
   if (sessionFiles.length === 0) {
+    const message = 'No opencode usage data found.';
+    if (jsonOutput) {
+      console.log('[]');
+    } else if (xmlOutput) {
+      console.log('<?xml version="1.0" encoding="UTF-8"?>\n<report>\n  <message>No data found</message>\n</report>');
+    } else {
+      console.log(message);
+      console.log('\nTo generate usage data:');
+      console.log('1. Install opencode: https://github.com/sst/opencode');
+      console.log('2. Use opencode to generate some coding sessions');
+      console.log('3. Run ocusage again to see your usage statistics');
+    }
     return;
   }
 

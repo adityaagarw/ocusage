@@ -1,6 +1,6 @@
 {
   "name": "ocusage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "OpenCode usage tracker - Track and analyze your Claude Code usage with detailed reports",
   "main": "dist/index.js",
   "module": "src/index.ts",
