@@ -1,0 +1,54 @@
+{
+  "name": "ocusage",
+  "version": "1.0.0",
+  "description": "OpenCode usage tracker - Track and analyze your Claude Code usage with detailed reports",
+  "main": "dist/index.js",
+  "module": "src/index.ts",
+  "type": "module",
+  "bin": {
+    "ocusage": "dist/index.js"
+  },
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "build": "bun build src/index.ts --outdir dist --target node --format esm",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "bun run build"
+  },
+  "keywords": [
+    "claude-code",
+    "opencode",
+    "usage",
+    "tracker",
+    "cli",
+    "analytics",
+    "reports"
+  ],
+  "author": "aditya",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adityaagarw/ocusage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adityaagarw/ocusage/issues"
+  },
+  "homepage": "https://github.com/adityaagarw/ocusage#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/yargs": "^17.0.0",
+    "@types/chokidar": "^2.0.0"
+  },
+  "dependencies": {
+    "yargs": "^17.0.0",
+    "cli-table3": "^0.6.0",
+    "chokidar": "^3.0.0"
+  }
+}
