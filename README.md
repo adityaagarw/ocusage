@@ -8,6 +8,17 @@ A command-line tool to track and analyze your opencode usage with detailed repor
 
 **Disclaimer:** This tool is not affiliated with, endorsed by, or officially supported by the opencode project or its creators.
 
+## 📊 Screenshots
+
+### Today's Usage Report
+![Today's Report](images/todays-report.png)
+
+### Today's Usage Report with models hidden
+![Today's Report without models](images/hide-models.png)
+
+### Help Command
+![Help Command](images/help-command.png)
+
 ## Features
 
 *   **Daily Reports**: Get a summary of your opencode usage on a daily basis.
