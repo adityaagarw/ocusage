@@ -1,4 +1,4 @@
-# ocusage - OpenCode Usage Tracker
+# ocusage - opencode Usage Tracker
 
 A command-line tool to track and analyze your opencode usage with detailed reports.
 
