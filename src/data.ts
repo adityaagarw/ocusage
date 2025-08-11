@@ -21,23 +21,12 @@ function getXdgDataHome(): string {
 export async function getOpencodeBaseDataDir(baseDir?: string): Promise<string> {
   const dataDir = baseDir ? path.resolve(baseDir) : path.join(getXdgDataHome(), APP_NAME, "project");
   
-  // Check if directory exists, but don't try to create it if it doesn't
+  // Only check if directory exists - never create directories
   try {
     await fs.access(dataDir);
     return dataDir;
   } catch (error) {
-    // If baseDir was explicitly provided and doesn't exist, that's an error
-    if (baseDir) {
-      throw new Error(`Specified data directory does not exist: ${dataDir}`);
-    }
-    
-    // For default directory, try to create only the opencode project structure
-    try {
-      await fs.mkdir(dataDir, { recursive: true });
-      return dataDir;
-    } catch (createError) {
-      throw new Error(`Cannot access or create opencode data directory: ${dataDir}. Please ensure opencode is installed and has generated usage data.`);
-    }
+    throw new Error(`opencode data directory not found: ${dataDir}. Please ensure opencode is installed and has generated usage data.`);
   }
 }
 
